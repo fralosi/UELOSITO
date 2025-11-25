@@ -193,7 +193,7 @@
             <h2 style="color: red; background: black;">GAME OVER</h2>
             <p id="death-msg">Uelo si è schiantato.</p>
             <p>Punteggio Finale: <span id="final-score">0</span></p>
-            <button class="btn" onclick="resetGame()">Riprova (Purtroppo)</button>
+            <button class="btn" onclick="resetGame()">Riprova</button>
             <br><br>
             <a href="index.html" style="color: lime; font-size: 12px;">Torna alla Home</a>
         </div>
@@ -206,7 +206,7 @@
 
     <div style="margin-top: 10px; font-size: 12px; color: grey;">
         Usa le FRECCE o "A" e "D" per muoverti.<br>
-        Evita le tasse e le responsabilità (gli ostacoli).
+        Evita le responsabilità (gli ostacoli).
     </div>
 
     <script>
@@ -219,12 +219,7 @@
         const gameOverScreen = document.getElementById('game-over');
 
         // --- GESTIONE IMMAGINE DI UELO ---
-        // *** MODIFICA QUI: CARICAMENTO FACCIA DI UELO ***
         const ueloImg = new Image();
-
-        // Ho creato una brutta faccia SVG convertita in base64 come placeholder.
-        // PER USARE LA TUA FOTO: Cancella tutto quello che c'è tra le virgolette e metti il nome del file.
-        // Esempio: ueloImg.src = "uelokart.png";
         ueloImg.src = "assets/uelokart.png";
 
         // Stato del gioco
@@ -234,12 +229,16 @@
         let speed = 5;
         let frameCount = 0;
 
+        // Speech Bubble State
+        let showSpeechBubble = false;
+        let speechBubbleTimer = 0;
+
         // Giocatore
         const player = {
             x: canvas.width / 2 - 25,
-            y: canvas.height - 85,
-            w: 85,
-            h: 85,
+            y: canvas.height - 100,
+            w: 100,
+            h: 100,
             dx: 0,
             speed: 7
         };
@@ -268,6 +267,29 @@
         btnLeft.addEventListener('touchend', (e) => { e.preventDefault(); leftPressed = false; });
         btnRight.addEventListener('touchstart', (e) => { e.preventDefault(); rightPressed = true; });
         btnRight.addEventListener('touchend', (e) => { e.preventDefault(); rightPressed = false; });
+
+        // Interaction for Speech Bubble
+        function handleInteraction(clientX, clientY) {
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            const x = (clientX - rect.left) * scaleX;
+            const y = (clientY - rect.top) * scaleY;
+
+            if (x >= player.x && x <= player.x + player.w &&
+                y >= player.y && y <= player.y + player.h) {
+                showSpeechBubble = true;
+                speechBubbleTimer = 120; // 2 seconds
+            }
+        }
+
+        canvas.addEventListener('mousedown', (e) => handleInteraction(e.clientX, e.clientY));
+        canvas.addEventListener('touchstart', (e) => {
+            if (e.touches.length > 0) {
+                handleInteraction(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        });
+        canvas.addEventListener('mousemove', (e) => handleInteraction(e.clientX, e.clientY));
 
         function keyDownHandler(e) {
             if (e.key == "Right" || e.key == "ArrowRight" || e.key == "d") rightPressed = true;
@@ -354,7 +376,6 @@
             }
 
             // Disegna Giocatore (Uelo)
-            // Se l'immagine è caricata la usa, altrimenti quadrato rosa
             try {
                 ctx.drawImage(ueloImg, player.x, player.y, player.w, player.h);
             } catch (e) {
@@ -374,6 +395,42 @@
                 ctx.font = "10px Arial";
                 ctx.textAlign = "center";
                 ctx.fillText(obs.type.text, obs.x + obs.w / 2, obs.y + obs.h / 2 + 4);
+            }
+
+            // Disegna Nuvoletta (Speech Bubble)
+            if (showSpeechBubble) {
+                ctx.save();
+                ctx.fillStyle = "white";
+                ctx.strokeStyle = "black";
+                ctx.lineWidth = 2;
+
+                const bubbleX = player.x + player.w / 2;
+                const bubbleY = player.y - 40;
+
+                // Bubble Body
+                ctx.beginPath();
+                ctx.ellipse(bubbleX, bubbleY, 100, 25, 0, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.stroke();
+
+                // Pointer
+                ctx.beginPath();
+                ctx.moveTo(bubbleX - 10, bubbleY + 20);
+                ctx.lineTo(bubbleX + 10, bubbleY + 20);
+                ctx.lineTo(bubbleX, bubbleY + 40);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+
+                // Text
+                ctx.fillStyle = "black";
+                ctx.font = "bold 14px 'Courier New'";
+                ctx.textAlign = "center";
+                ctx.fillText("non quando guido Diobbò", bubbleX, bubbleY + 5);
+                ctx.restore();
+
+                speechBubbleTimer--;
+                if (speechBubbleTimer <= 0) showSpeechBubble = false;
             }
         }
 

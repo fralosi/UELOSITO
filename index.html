@@ -269,7 +269,8 @@
         <div style="margin: 20px 0; text-align: center;">
             <a href="giocouelo.html" style="text-decoration: none;">
                 <button
-                    style="background: lime; color: black; font-size: 1.5em; font-weight: bold; border: 5px ridge magenta; padding: 10px 20px; cursor: pointer; animation: blink 2s infinite;">
+                    style="background: lime; color: black; font-size: 1.5em; font-weight: bold; border: 5px ridge magenta; padding: 10px 20px; cursor: pointer; animation: blink 2s infinite; display: flex; align-items: center; justify-content: center; gap: 10px; margin: 0 auto;">
+                    <img src="assets/uelokart.png" alt="Uelo Kart" style="height: 40px; width: auto;">
                     🎮 GIOCA CON UELO 🎮
                 </button>
             </a>
@@ -305,7 +306,6 @@
                 <ul>
                     <li>1 Piadina del supermercato (quella in offerta)</li>
                     <li>1 Padella (opzionale, si può mangiare anche fredda)</li>
-                    <li>Disperazione q.b.</li>
                 </ul>
 
                 <h4 style="border-bottom: 2px solid blue;">PROCEDIMENTO:</h4>
@@ -315,138 +315,134 @@
                     <li>Accendere il fuoco (passaggio critico, spesso dimenticato).</li>
                     <li>Aspettare che si bruci da un lato mentre guardi TikTok.</li>
                     <li>Girarla e bruciarla anche dall'altro lato per uniformità.</li>
-                    <li>Farcire con quello che trovi in frigo (solitamente un limone ammuffito e maionese scaduta).</li>
-                    <li>Gustare piangendo.</li>
+                    <li>Farcire con quello che trovi in frigo (solitamente una fetta di prosciutto e maionese scaduta).
+                    </li>
+                    <li>Gustare guardando il Televideo.</li>
                 </ol>
 
                 <div style="text-align: center; border: 1px dotted red; padding: 5px; margin-top: 10px;">
-                    <i>"Buona come quella della busta!" - Gambero Rozzo</i>
+                    <i>"E ti lamenti?" - David Diobò</i>
                 </div>
             </div>
 
-            <div style="margin-top: 20px; opacity: 0.7; background: #eee; padding: 5px; border: 1px inset;">
-                <h3>🔜 PROSSIMAMENTE:</h3>
-                <ul style="list-style-type: square;">
-                    <li>Acqua Bollita (Livello Avanzato)</li>
-                    <li>Latte e Cereali (Senza latte)</li>
-                    <li>Toast (Bruciato)</li>
-                </ul>
+            <hr class="nineties">
+
+            <!-- Sezione Interattiva Fastidiosa -->
+            <div style="border: 5px dotted lime; padding: 20px; background: #222;">
+                <h3 style="color: #FF69B4;">ZONE INTERATTIVA (NON TOCCARE)</h3>
+
+                <p>Vuoi offrire una QR a Uelo?</p>
+                <button id="runaway-btn" class="runaway-btn" onmouseover="scappaPulsante()">CLICCA QUI PER
+                    PAGARE</button>
+                <br><br>
+                <button onclick="fakeVirus()" style="background: grey; border: 2px outset white;">CLICCA QUI!</button>
             </div>
-        </div>
 
-        <hr class="nineties">
+            <div style="margin: 20px 0; text-align: center;">
+                <a href="giocouelo.html" style="text-decoration: none;">
+                    <button
+                        style="background: lime; color: black; font-size: 1.5em; font-weight: bold; border: 5px ridge magenta; padding: 10px 20px; cursor: pointer; animation: blink 2s infinite;">
+                        🎮 GIOCA CON UELO 🎮
+                    </button>
+                </a>
+            </div>
 
-        <!-- Sezione Interattiva Fastidiosa -->
-        <div style="border: 5px dotted lime; padding: 20px; background: #222;">
-            <h3 style="color: #FF69B4;">ZONE INTERATTIVA (NON TOCCARE)</h3>
-
-            <p>Vuoi offrire una QR a Uelo?</p>
-            <button id="runaway-btn" class="runaway-btn" onmouseover="scappaPulsante()">CLICCA QUI PER PAGARE</button>
             <br><br>
-            <button onclick="fakeVirus()" style="background: grey; border: 2px outset white;">CLICCA QUI!</button>
-        </div>
 
-        <div style="margin: 20px 0; text-align: center;">
-            <a href="giocouelo.html" style="text-decoration: none;">
-                <button
-                    style="background: lime; color: black; font-size: 1.5em; font-weight: bold; border: 5px ridge magenta; padding: 10px 20px; cursor: pointer; animation: blink 2s infinite;">
-                    🎮 GIOCA CON UELO 🎮
-                </button>
-            </a>
-        </div>
-
-        <br><br>
-
-        <!-- GIF di costruzione simulate -->
-        <div style="display: flex; justify-content: space-around;">
-            <div style="background: yellow; color: black; padding: 5px; font-weight: bold; border: 1px solid black;">🚧
-                UNDER CONSTRUCTION 🚧</div>
-            <div style="background: yellow; color: black; padding: 5px; font-weight: bold; border: 1px solid black;">📧
-                EMAIL ME (NO SPAM)</div>
-        </div>
-
-        <br>
-
-        <!-- Footer -->
-        <div style="font-family: monospace; font-size: 10px; color: grey;">
-            VISITATORI: <span
-                style="background: black; color: red; border: 1px inset grey; padding: 2px; font-size: 14px;"
-                id="counter">000001</span>
-            <br>
-            © 1998 - 2025 Emanuele Martulli Fan Club (Non ufficiale)
-            <br>
-            <a href="#">Torna su (Se hai il coraggio)</a>
-        </div>
-        <br>
-    </div>
-
-    <!-- Windows 95 Popup -->
-    <div id="virus-popup">
-        <div class="win-header">
-            <span>Critical Error</span>
-            <span style="background: grey; padding: 0 4px; cursor: pointer;" onclick="chiudiVirus()">X</span>
-        </div>
-        <div class="win-body">
-            <div style="color: red; font-size: 30px; font-weight: bold;">❌</div>
-            <div>
-                Sai chi ti saluta?<br>
-                clicca per scoprire!
+            <!-- GIF di costruzione simulate -->
+            <div style="display: flex; justify-content: space-around;">
+                <div
+                    style="background: yellow; color: black; padding: 5px; font-weight: bold; border: 1px solid black;">
+                    🚧
+                    UNDER CONSTRUCTION 🚧</div>
+                <div
+                    style="background: yellow; color: black; padding: 5px; font-weight: bold; border: 1px solid black;">
+                    📧
+                    EMAIL ME (NO SPAM)</div>
             </div>
+
+            <br>
+
+            <!-- Footer -->
+            <div style="font-family: monospace; font-size: 10px; color: grey;">
+                VISITATORI: <span
+                    style="background: black; color: red; border: 1px inset grey; padding: 2px; font-size: 14px;"
+                    id="counter">000001</span>
+                <br>
+                © 1998 - 2025 Emanuele Martulli Fan Club (Non ufficiale)
+                <br>
+                <a href="#">Torna su (Se hai il coraggio)</a>
+            </div>
+            <br>
         </div>
-        <button class="win-btn" onclick="chiudiVirus()">OK</button>
-    </div>
 
-    <script>
-        // Funzione per il pulsante che scappa
-        function scappaPulsante() {
-            const btn = document.getElementById('runaway-btn');
-            const container = document.querySelector('.container');
+        <!-- Windows 95 Popup -->
+        <div id="virus-popup">
+            <div class="win-header">
+                <span>Critical Error</span>
+                <span style="background: grey; padding: 0 4px; cursor: pointer;" onclick="chiudiVirus()">X</span>
+            </div>
+            <div class="win-body">
+                <div style="color: red; font-size: 30px; font-weight: bold;">❌</div>
+                <div>
+                    Sai chi ti saluta?<br>
+                    clicca per scoprire!
+                </div>
+            </div>
+            <button class="win-btn" onclick="chiudiVirus()">OK</button>
+        </div>
 
-            // Calcola limiti random
-            const maxX = container.clientWidth - btn.clientWidth - 20;
-            const maxY = 300; // Limita lo spostamento verticale
+        <script>
+            // Funzione per il pulsante che scappa
+            function scappaPulsante() {
+                const btn = document.getElementById('runaway-btn');
+                const container = document.querySelector('.container');
 
-            const randomX = Math.floor(Math.random() * maxX);
-            const randomY = Math.floor(Math.random() * maxY) - (maxY / 2); // Sposta su e giù
+                // Calcola limiti random
+                const maxX = container.clientWidth - btn.clientWidth - 20;
+                const maxY = 300; // Limita lo spostamento verticale
 
-            btn.style.position = 'relative'; // Assicura che si muova relativo al flusso o absolute se preferisci
-            btn.style.left = randomX + 'px';
-            btn.style.top = randomY + 'px';
+                const randomX = Math.floor(Math.random() * maxX);
+                const randomY = Math.floor(Math.random() * maxY) - (maxY / 2); // Sposta su e giù
 
-            // Cambia testo
-            const insulti = ["TROPPO LENTO!", "RIPROVA!", "SEI COME UELO?", "MANCATO!", "OPS!"];
-            btn.innerText = insulti[Math.floor(Math.random() * insulti.length)];
-        }
+                btn.style.position = 'relative'; // Assicura che si muova relativo al flusso o absolute se preferisci
+                btn.style.left = randomX + 'px';
+                btn.style.top = randomY + 'px';
 
-        // Funzione fake virus
-        function fakeVirus() {
-            // Suona un beep (se supportato dai browser moderni è difficile senza user interaction, quindi usiamo solo visuale)
-            document.getElementById('virus-popup').style.display = 'block';
-        }
-
-        function chiudiVirus() {
-            document.getElementById('virus-popup').style.display = 'none';
-            alert("Sto cazzo!");
-        }
-
-        // Contatore visite fake che aumenta a caso
-        setInterval(() => {
-            const counterElement = document.getElementById('counter');
-            let count = parseInt(counterElement.innerText);
-            if (Math.random() > 0.7) {
-                count++;
-                counterElement.innerText = count.toString().padStart(6, '0');
+                // Cambia testo
+                const insulti = ["TROPPO LENTO!", "RIPROVA!", "SEI COME UELO?", "MANCATO!", "OPS!"];
+                btn.innerText = insulti[Math.floor(Math.random() * insulti.length)];
             }
-        }, 2000);
 
-        // Effetto titolo che cambia nella tab del browser
-        let titleText = " ~*~ IL REGNO DI UELO ~*~ ";
-        setInterval(() => {
-            titleText = titleText.substring(1) + titleText.substring(0, 1);
-            document.title = titleText;
-        }, 200);
+            // Funzione fake virus
+            function fakeVirus() {
+                // Suona un beep (se supportato dai browser moderni è difficile senza user interaction, quindi usiamo solo visuale)
+                document.getElementById('virus-popup').style.display = 'block';
+            }
 
-    </script>
+            function chiudiVirus() {
+                document.getElementById('virus-popup').style.display = 'none';
+                alert("Sto cazzo!");
+            }
+
+            // Contatore visite fake che aumenta a caso
+            setInterval(() => {
+                const counterElement = document.getElementById('counter');
+                let count = parseInt(counterElement.innerText);
+                if (Math.random() > 0.7) {
+                    count++;
+                    counterElement.innerText = count.toString().padStart(6, '0');
+                }
+            }, 2000);
+
+            // Effetto titolo che cambia nella tab del browser
+            let titleText = " ~*~ IL REGNO DI UELO ~*~ ";
+            setInterval(() => {
+                titleText = titleText.substring(1) + titleText.substring(0, 1);
+                document.title = titleText;
+            }, 200);
+
+        </script>
 </body>
 
 </html>
