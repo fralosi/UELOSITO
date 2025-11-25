@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>~*~ IL REGNO DI UELO ~*~</title>
+    <style>
+        /* RESET DEL BUON GUSTO */
+        body {
+            background-color: #000080;
+            /* Navy Blue tipico anni 90 */
+            background-image: radial-gradient(#ffffff 1px, transparent 1px), radial-gradient(#ffffff 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            color: #FFFF00;
+            /* Giallo sparato */
+            font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" style="fill:lime;"><text y="20" font-size="20">👽</text></svg>'), auto;
+        }
+
+        a {
+            color: #00FF00;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        a:visited {
+            color: #FF00FF;
+        }
+
+        a:hover {
+            background-color: #FFFFFF;
+            color: #000000;
+            cursor: help;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.8);
+            border: 5px ridge #FF0000;
+            padding: 10px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3em;
+            text-shadow: 3px 3px #FF0000, 6px 6px #00FF00;
+            animation: blink 1s infinite;
+        }
+
+        h2 {
+            border-bottom: 3px dashed cyan;
+            padding-bottom: 5px;
+            background-color: blue;
+        }
+
+        .blink-text {
+            animation: blink 0.5s step-end infinite;
+            color: red;
+            background: white;
+            padding: 2px;
+            font-weight: bold;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes rainbow {
+            0% {
+                color: red;
+            }
+
+            20% {
+                color: yellow;
+            }
+
+            40% {
+                color: lime;
+            }
+
+            60% {
+                color: cyan;
+            }
+
+            80% {
+                color: blue;
+            }
+
+            100% {
+                color: magenta;
+            }
+        }
+
+        .rainbow-text {
+            animation: rainbow 2s infinite linear;
+            font-size: 1.2em;
+        }
+
+        .photo-frame {
+            border: 10px outset #808080;
+            background: #C0C0C0;
+            padding: 5px;
+            display: inline-block;
+            margin: 20px;
+        }
+
+        .pixel-art {
+            width: 200px;
+            height: 200px;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: lime;
+            font-family: monospace;
+            border: 2px inset white;
+        }
+
+        table {
+            width: 100%;
+            border: 3px double yellow;
+            margin-top: 20px;
+        }
+
+        td {
+            border: 1px solid cyan;
+            padding: 5px;
+        }
+
+        .runaway-btn {
+            position: relative;
+            padding: 10px 20px;
+            background: red;
+            color: white;
+            font-weight: bold;
+            border: 3px outset white;
+            cursor: pointer;
+        }
+
+        /* Fake Windows 95 Popup */
+        #virus-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            background: #C0C0C0;
+            border: 2px outset white;
+            box-shadow: 5px 5px 0px #000;
+            z-index: 9999;
+            font-family: 'Tahoma', sans-serif;
+            color: black;
+            text-align: left;
+        }
+
+        .win-header {
+            background: #000080;
+            color: white;
+            padding: 2px 5px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .win-body {
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .win-btn {
+            margin: 0 auto 10px auto;
+            display: block;
+            width: 80px;
+            border: 2px outset white;
+            background: #C0C0C0;
+            cursor: pointer;
+        }
+
+        .fire {
+            display: inline-block;
+            color: orange;
+            text-shadow: 0 0 2px red;
+        }
+
+        hr.nineties {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 0, 0.75), rgba(0, 0, 0, 0));
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Marquee in alto -->
+    <marquee bgcolor="#FF00FF" scrollamount="15"
+        style="border-bottom: 3px solid black; color: white; font-weight: bold; font-size: 1.2em;">
+        *** BENVENUTI NELLA TANA DEL LUPO *** ATTENZIONE: ALTO LIVELLO DI RADIAZIONI "UELO" *** SITO OTTIMIZZATO PER
+        NETSCAPE NAVIGATOR 4.0 ***
+    </marquee>
+
+    <div class="container">
+
+        <br>
+        <div style="text-align: center;">
+            <span class="fire">🔥</span>
+            <span class="fire">🔥</span>
+            <span class="fire">🔥</span>
+        </div>
+
+        <h1>EMANUELE "UELO" MARTULLI</h1>
+        <h3 class="rainbow-text">Il mito. La leggenda. Il disastro.</h3>
+
+        <div
+            style="background-color: yellow; color: black; padding: 5px; border: 2px dashed red; transform: rotate(-2deg); width: 60%; margin: 10px auto;">
+            <span class="blink-text">!!! ATTENZIONE !!!</span><br>
+            Non dare da mangiare a questo esemplare se non hai un QR.
+        </div>
+
+        <hr class="nineties">
+
+        <!-- Sezione Foto -->
+        <div class="photo-frame">
+            <img src="assets/mainpic.jpg" alt="Uelo in estasi" style="width: 200px; height: 200px; object-fit: cover;">
+            <p style="color: black; font-size: 0.8em; margin: 0;"><i>Fig. 1: Uelo in estasi</i></p>
+        </div>
+
+        <div style="text-align: left; padding: 20px;">
+            <h2>💾 SCHEDA TECNICA</h2>
+            <table>
+                <tr>
+                    <td bgcolor="#0000FF"><b>Nome in codice:</b></td>
+                    <td>UELO (Unità Estremamente Lenta e Ottusa)</td>
+                </tr>
+                <tr>
+                    <td bgcolor="#0000FF"><b>Data di Rilascio:</b></td>
+                    <td>Sconosciuta (Purtroppo)</td>
+                </tr>
+                <tr>
+                    <td bgcolor="#0000FF"><b>Abilità Speciali:</b></td>
+                    <td>
+                        <ul>
+                            <li>Dormire in piedi</li>
+                            <li>Parlare inglese</li>
+                            <li>Dimenticare le chiavi della macchina</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#0000FF"><b>Livello IQ:</b></td>
+                    <td>Caricamento in corso... <span class="blink-text">ERROR 404</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <div style="margin: 20px 0; text-align: center;">
+            <a href="giocouelo.html" style="text-decoration: none;">
+                <button
+                    style="background: lime; color: black; font-size: 1.5em; font-weight: bold; border: 5px ridge magenta; padding: 10px 20px; cursor: pointer; animation: blink 2s infinite;">
+                    🎮 GIOCA CON UELO 🎮
+                </button>
+            </a>
+        </div>
+
+        <hr class="nineties">
+
+        <!-- Dicono di lui -->
+        <h2>🗣️ DICONO DI LUI</h2>
+        <p>"Chi?" <br> - <i>STO CAZZO!!!</i></p>
+        <p>"O tutti o qualcuno." <br> - <i>Igor</i></p>
+        <p>"Vi prego, riprendetevelo." <br> - <i>Gianfrileo</i></p>
+
+        <hr class="nineties">
+
+        <!-- Sezione Ricette -->
+        <div
+            style="background-color: #ffcc00; border: 4px dashed #ff00ff; padding: 15px; color: black; font-family: 'Courier New', monospace; margin-bottom: 20px;">
+            <h2>🍕 LE RICETTE DI UELO</h2>
+            <p>I segreti culinari che Cracco non vuole farti sapere.</p>
+
+            <div style="background: white; border: 2px solid black; padding: 10px; margin-top: 10px; text-align: left;">
+                <h3 style="background: red; color: yellow; text-align: center; margin: 0; padding: 5px;">LA PIADINA GIÀ
+                    FATTA</h3>
+                <div style="display: flex; align-items: center; justify-content: center; margin: 10px 0;">
+                    <span style="font-size: 40px;">🌯</span>
+                </div>
+
+                <p><b>DIFFICOLTÀ:</b> Impossibile (per Uelo)</p>
+                <p><b>TEMPO:</b> 30 secondi (o 3 ore se ti dimentichi di accendere il gas)</p>
+
+                <h4 style="border-bottom: 2px solid blue;">INGREDIENTI:</h4>
+                <ul>
+                    <li>1 Piadina del supermercato (quella in offerta)</li>
+                    <li>1 Padella (opzionale, si può mangiare anche fredda)</li>
+                    <li>Disperazione q.b.</li>
+                </ul>
+
+                <h4 style="border-bottom: 2px solid blue;">PROCEDIMENTO:</h4>
+                <ol>
+                    <li>Aprire la confezione con i denti perché non trovi le forbici.</li>
+                    <li>Buttare la piadina sulla padella fredda.</li>
+                    <li>Accendere il fuoco (passaggio critico, spesso dimenticato).</li>
+                    <li>Aspettare che si bruci da un lato mentre guardi TikTok.</li>
+                    <li>Girarla e bruciarla anche dall'altro lato per uniformità.</li>
+                    <li>Farcire con quello che trovi in frigo (solitamente un limone ammuffito e maionese scaduta).</li>
+                    <li>Gustare piangendo.</li>
+                </ol>
+
+                <div style="text-align: center; border: 1px dotted red; padding: 5px; margin-top: 10px;">
+                    <i>"Buona come quella della busta!" - Gambero Rozzo</i>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px; opacity: 0.7; background: #eee; padding: 5px; border: 1px inset;">
+                <h3>🔜 PROSSIMAMENTE:</h3>
+                <ul style="list-style-type: square;">
+                    <li>Acqua Bollita (Livello Avanzato)</li>
+                    <li>Latte e Cereali (Senza latte)</li>
+                    <li>Toast (Bruciato)</li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="nineties">
+
+        <!-- Sezione Interattiva Fastidiosa -->
+        <div style="border: 5px dotted lime; padding: 20px; background: #222;">
+            <h3 style="color: #FF69B4;">ZONE INTERATTIVA (NON TOCCARE)</h3>
+
+            <p>Vuoi offrire una QR a Uelo?</p>
+            <button id="runaway-btn" class="runaway-btn" onmouseover="scappaPulsante()">CLICCA QUI PER PAGARE</button>
+            <br><br>
+            <button onclick="fakeVirus()" style="background: grey; border: 2px outset white;">CLICCA QUI!</button>
+        </div>
+
+        <div style="margin: 20px 0; text-align: center;">
+            <a href="giocouelo.html" style="text-decoration: none;">
+                <button
+                    style="background: lime; color: black; font-size: 1.5em; font-weight: bold; border: 5px ridge magenta; padding: 10px 20px; cursor: pointer; animation: blink 2s infinite;">
+                    🎮 GIOCA CON UELO 🎮
+                </button>
+            </a>
+        </div>
+
+        <br><br>
+
+        <!-- GIF di costruzione simulate -->
+        <div style="display: flex; justify-content: space-around;">
+            <div style="background: yellow; color: black; padding: 5px; font-weight: bold; border: 1px solid black;">🚧
+                UNDER CONSTRUCTION 🚧</div>
+            <div style="background: yellow; color: black; padding: 5px; font-weight: bold; border: 1px solid black;">📧
+                EMAIL ME (NO SPAM)</div>
+        </div>
+
+        <br>
+
+        <!-- Footer -->
+        <div style="font-family: monospace; font-size: 10px; color: grey;">
+            VISITATORI: <span
+                style="background: black; color: red; border: 1px inset grey; padding: 2px; font-size: 14px;"
+                id="counter">000001</span>
+            <br>
+            © 1998 - 2025 Emanuele Martulli Fan Club (Non ufficiale)
+            <br>
+            <a href="#">Torna su (Se hai il coraggio)</a>
+        </div>
+        <br>
+    </div>
+
+    <!-- Windows 95 Popup -->
+    <div id="virus-popup">
+        <div class="win-header">
+            <span>Critical Error</span>
+            <span style="background: grey; padding: 0 4px; cursor: pointer;" onclick="chiudiVirus()">X</span>
+        </div>
+        <div class="win-body">
+            <div style="color: red; font-size: 30px; font-weight: bold;">❌</div>
+            <div>
+                Sai chi ti saluta?<br>
+                clicca per scoprire!
+            </div>
+        </div>
+        <button class="win-btn" onclick="chiudiVirus()">OK</button>
+    </div>
+
+    <script>
+        // Funzione per il pulsante che scappa
+        function scappaPulsante() {
+            const btn = document.getElementById('runaway-btn');
+            const container = document.querySelector('.container');
+
+            // Calcola limiti random
+            const maxX = container.clientWidth - btn.clientWidth - 20;
+            const maxY = 300; // Limita lo spostamento verticale
+
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY) - (maxY / 2); // Sposta su e giù
+
+            btn.style.position = 'relative'; // Assicura che si muova relativo al flusso o absolute se preferisci
+            btn.style.left = randomX + 'px';
+            btn.style.top = randomY + 'px';
+
+            // Cambia testo
+            const insulti = ["TROPPO LENTO!", "RIPROVA!", "SEI COME UELO?", "MANCATO!", "OPS!"];
+            btn.innerText = insulti[Math.floor(Math.random() * insulti.length)];
+        }
+
+        // Funzione fake virus
+        function fakeVirus() {
+            // Suona un beep (se supportato dai browser moderni è difficile senza user interaction, quindi usiamo solo visuale)
+            document.getElementById('virus-popup').style.display = 'block';
+        }
+
+        function chiudiVirus() {
+            document.getElementById('virus-popup').style.display = 'none';
+            alert("Sto cazzo!");
+        }
+
+        // Contatore visite fake che aumenta a caso
+        setInterval(() => {
+            const counterElement = document.getElementById('counter');
+            let count = parseInt(counterElement.innerText);
+            if (Math.random() > 0.7) {
+                count++;
+                counterElement.innerText = count.toString().padStart(6, '0');
+            }
+        }, 2000);
+
+        // Effetto titolo che cambia nella tab del browser
+        let titleText = " ~*~ IL REGNO DI UELO ~*~ ";
+        setInterval(() => {
+            titleText = titleText.substring(1) + titleText.substring(0, 1);
+            document.title = titleText;
+        }, 200);
+
+    </script>
+</body>
+
+</html>

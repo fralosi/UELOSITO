@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRAND PRIX UELO 98</title>
+    <style>
+        body {
+            background-color: #222;
+            color: lime;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            margin: 0;
+            overflow: hidden;
+            /* Niente scroll, è un gioco */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: yellow;
+            text-shadow: 4px 4px #ff0000;
+            margin: 10px 0;
+            font-size: 24px;
+            animation: shake 2s infinite;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translate(1px, 1px) rotate(0deg);
+            }
+
+            10% {
+                transform: translate(-1px, -2px) rotate(-1deg);
+            }
+
+            20% {
+                transform: translate(-3px, 0px) rotate(1deg);
+            }
+
+            30% {
+                transform: translate(3px, 2px) rotate(0deg);
+            }
+
+            40% {
+                transform: translate(1px, -1px) rotate(1deg);
+            }
+
+            50% {
+                transform: translate(-1px, 2px) rotate(-1deg);
+            }
+
+            60% {
+                transform: translate(-3px, 1px) rotate(0deg);
+            }
+
+            70% {
+                transform: translate(3px, 1px) rotate(-1deg);
+            }
+
+            80% {
+                transform: translate(-1px, -1px) rotate(1deg);
+            }
+
+            90% {
+                transform: translate(1px, 2px) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(1px, -2px) rotate(-1deg);
+            }
+        }
+
+        #game-container {
+            position: relative;
+            border: 10px ridge #888;
+            box-shadow: 0 0 20px #ff00ff;
+        }
+
+        canvas {
+            background-color: #555;
+            display: block;
+            cursor: none;
+            /* Nascondi il mouse per immersività */
+        }
+
+        #ui-layer {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            text-shadow: 2px 2px black;
+            pointer-events: none;
+        }
+
+        #game-over {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: blue;
+            border: 5px double white;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            z-index: 10;
+        }
+
+        .btn {
+            background: red;
+            color: yellow;
+            font-family: inherit;
+            font-weight: bold;
+            border: 3px outset white;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .btn:active {
+            border-style: inset;
+        }
+
+        /* Controlli mobile */
+        .mobile-controls {
+            display: none;
+            /* Visibile solo su schermi piccoli via media query */
+            width: 100%;
+            justify-content: space-between;
+            padding: 20px;
+            box-sizing: border-box;
+            position: absolute;
+            bottom: 0;
+        }
+
+        .touch-btn {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            user-select: none;
+        }
+
+        @media (max-width: 600px) {
+            .mobile-controls {
+                display: flex;
+            }
+
+            h1 {
+                font-size: 18px;
+            }
+        }
+
+        .marquee {
+            width: 100%;
+            background: blue;
+            color: white;
+            font-size: 12px;
+            padding: 2px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="marquee">
+        <marquee scrollamount="10">GUIDA CON PRUDENZA (O NON GUIDARE PROPRIO, CHE È MEGLIO) --- RECORD ATTUALE: UELO (0
+            PUNTI) ---</marquee>
+    </div>
+
+    <h1>🏁 GRAND PRIX UELO 🏁</h1>
+
+    <div id="game-container">
+        <canvas id="gameCanvas" width="400" height="600"></canvas>
+        <div id="ui-layer">
+            SCORE: <span id="score">0</span><br>
+            LIVES: <span id="lives">❤️❤️❤️</span>
+        </div>
+
+        <div id="game-over">
+            <h2 style="color: red; background: black;">GAME OVER</h2>
+            <p id="death-msg">Uelo si è schiantato.</p>
+            <p>Punteggio Finale: <span id="final-score">0</span></p>
+            <button class="btn" onclick="resetGame()">Riprova (Purtroppo)</button>
+            <br><br>
+            <a href="index.html" style="color: lime; font-size: 12px;">Torna alla Home</a>
+        </div>
+    </div>
+
+    <div class="mobile-controls">
+        <div class="touch-btn" id="btn-left">⬅️</div>
+        <div class="touch-btn" id="btn-right">➡️</div>
+    </div>
+
+    <div style="margin-top: 10px; font-size: 12px; color: grey;">
+        Usa le FRECCE o "A" e "D" per muoverti.<br>
+        Evita le tasse e le responsabilità (gli ostacoli).
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreEl = document.getElementById('score');
+        const livesEl = document.getElementById('lives');
+        const finalScoreEl = document.getElementById('final-score');
+        const deathMsgEl = document.getElementById('death-msg');
+        const gameOverScreen = document.getElementById('game-over');
+
+        // --- GESTIONE IMMAGINE DI UELO ---
+        // *** MODIFICA QUI: CARICAMENTO FACCIA DI UELO ***
+        const ueloImg = new Image();
+
+        // Ho creato una brutta faccia SVG convertita in base64 come placeholder.
+        // PER USARE LA TUA FOTO: Cancella tutto quello che c'è tra le virgolette e metti il nome del file.
+        // Esempio: ueloImg.src = "uelokart.png";
+        ueloImg.src = "assets/uelokart.png";
+
+        // Stato del gioco
+        let gameRunning = false;
+        let score = 0;
+        let lives = 3;
+        let speed = 5;
+        let frameCount = 0;
+
+        // Giocatore
+        const player = {
+            x: canvas.width / 2 - 25,
+            y: canvas.height - 85,
+            w: 85,
+            h: 85,
+            dx: 0,
+            speed: 7
+        };
+
+        // Ostacoli
+        let obstacles = [];
+        const obstacleTypes = [
+            { color: 'red', text: 'LAVORO' },
+            { color: 'green', text: 'SVEGLIA' },
+            { color: 'purple', text: 'CUCINARE' },
+            { color: 'orange', text: 'RAGAZZE' }
+        ];
+
+        // Input
+        let rightPressed = false;
+        let leftPressed = false;
+
+        document.addEventListener('keydown', keyDownHandler);
+        document.addEventListener('keyup', keyUpHandler);
+
+        // Touch controls
+        const btnLeft = document.getElementById('btn-left');
+        const btnRight = document.getElementById('btn-right');
+
+        btnLeft.addEventListener('touchstart', (e) => { e.preventDefault(); leftPressed = true; });
+        btnLeft.addEventListener('touchend', (e) => { e.preventDefault(); leftPressed = false; });
+        btnRight.addEventListener('touchstart', (e) => { e.preventDefault(); rightPressed = true; });
+        btnRight.addEventListener('touchend', (e) => { e.preventDefault(); rightPressed = false; });
+
+        function keyDownHandler(e) {
+            if (e.key == "Right" || e.key == "ArrowRight" || e.key == "d") rightPressed = true;
+            else if (e.key == "Left" || e.key == "ArrowLeft" || e.key == "a") leftPressed = true;
+        }
+
+        function keyUpHandler(e) {
+            if (e.key == "Right" || e.key == "ArrowRight" || e.key == "d") rightPressed = false;
+            else if (e.key == "Left" || e.key == "ArrowLeft" || e.key == "a") leftPressed = false;
+        }
+
+        // Logica di gioco
+        function update() {
+            if (!gameRunning) return;
+
+            // Movimento Player
+            if (rightPressed && player.x < canvas.width - player.w - 10) player.x += player.speed;
+            else if (leftPressed && player.x > 10) player.x -= player.speed;
+
+            // Generazione Ostacoli
+            frameCount++;
+            if (frameCount % 60 === 0) { // Ogni secondo circa
+                let type = obstacleTypes[Math.floor(Math.random() * obstacleTypes.length)];
+                let obsX = Math.random() * (canvas.width - 50);
+                obstacles.push({
+                    x: obsX,
+                    y: -50,
+                    w: 50,
+                    h: 50,
+                    type: type
+                });
+            }
+
+            // Aumento difficoltà
+            if (frameCount % 500 === 0) {
+                speed += 1;
+            }
+
+            // Aggiornamento Ostacoli
+            for (let i = 0; i < obstacles.length; i++) {
+                obstacles[i].y += speed;
+
+                // Collisione
+                if (
+                    player.x < obstacles[i].x + obstacles[i].w &&
+                    player.x + player.w > obstacles[i].x &&
+                    player.y < obstacles[i].y + obstacles[i].h &&
+                    player.y + player.h > obstacles[i].y
+                ) {
+                    // Colpito!
+                    lives--;
+                    updateLives();
+                    obstacles.splice(i, 1);
+                    screenShake();
+                    i--;
+
+                    if (lives <= 0) endGame();
+                }
+                // Punteggio (se passa il fondo)
+                else if (obstacles[i].y > canvas.height) {
+                    score += 10;
+                    scoreEl.innerText = score;
+                    obstacles.splice(i, 1);
+                    i--;
+                }
+            }
+        }
+
+        function draw() {
+            // Sfondo (Strada)
+            ctx.fillStyle = "#333";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Strisce stradali animate
+            ctx.fillStyle = "#FFF";
+            let offset = (frameCount * speed) % 40;
+            for (let i = -40; i < canvas.height; i += 40) {
+                ctx.fillRect(canvas.width / 2 - 5, i + offset, 10, 20);
+                // Bordi strada
+                ctx.fillStyle = (Math.floor(i / 40) % 2 == 0) ? "red" : "white";
+                ctx.fillRect(0, i + offset, 20, 40);
+                ctx.fillRect(canvas.width - 20, i + offset, 20, 40);
+                ctx.fillStyle = "#FFF"; // reset per striscia centrale
+            }
+
+            // Disegna Giocatore (Uelo)
+            // Se l'immagine è caricata la usa, altrimenti quadrato rosa
+            try {
+                ctx.drawImage(ueloImg, player.x, player.y, player.w, player.h);
+            } catch (e) {
+                ctx.fillStyle = "pink";
+                ctx.fillRect(player.x, player.y, player.w, player.h);
+            }
+
+            // Disegna Ostacoli
+            for (let obs of obstacles) {
+                ctx.fillStyle = obs.type.color;
+                ctx.fillRect(obs.x, obs.y, obs.w, obs.h);
+                ctx.strokeStyle = "white";
+                ctx.strokeRect(obs.x, obs.y, obs.w, obs.h);
+
+                // Testo ostacolo
+                ctx.fillStyle = "white";
+                ctx.font = "10px Arial";
+                ctx.textAlign = "center";
+                ctx.fillText(obs.type.text, obs.x + obs.w / 2, obs.y + obs.h / 2 + 4);
+            }
+        }
+
+        function loop() {
+            update();
+            draw();
+            if (gameRunning) requestAnimationFrame(loop);
+        }
+
+        function updateLives() {
+            let hearts = "";
+            for (let i = 0; i < lives; i++) hearts += "❤️";
+            livesEl.innerText = hearts;
+        }
+
+        function screenShake() {
+            canvas.style.transform = "translate(5px, 5px)";
+            setTimeout(() => canvas.style.transform = "translate(-5px, -5px)", 50);
+            setTimeout(() => canvas.style.transform = "translate(0, 0)", 100);
+        }
+
+        function endGame() {
+            gameRunning = false;
+            finalScoreEl.innerText = score;
+
+            const frasiMorte = [
+                "Uelo ha deciso di fare un riposino.",
+                "Colpito dalle responsabilità.",
+                "Troppo lento per questo mondo.",
+                "GAME OVER (Come la sua vita sociale)"
+            ];
+            deathMsgEl.innerText = frasiMorte[Math.floor(Math.random() * frasiMorte.length)];
+
+            gameOverScreen.style.display = 'block';
+        }
+
+        function resetGame() {
+            gameRunning = true;
+            score = 0;
+            lives = 3;
+            speed = 5;
+            frameCount = 0;
+            obstacles = [];
+            scoreEl.innerText = "0";
+            updateLives();
+            gameOverScreen.style.display = 'none';
+            player.x = canvas.width / 2 - 25;
+            loop();
+        }
+
+        // Avvio iniziale
+        window.onload = function () {
+            resetGame();
+        };
+
+        // Adatta canvas a finestra
+        function resize() {
+            // Manteniamo aspect ratio fisso o no? Meglio fisso per semplicità logica
+            // Lasciamo width/height fissi nel canvas tag e scaliamo via CSS se serve
+        }
+    </script>
+</body>
+
+</html>
