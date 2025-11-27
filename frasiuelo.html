@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Sacre Scritture di Uelo</title>
+    <style>
+        body {
+            background-color: #2b0000;
+            background-image:
+                linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000),
+                linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            color: #d4af37;
+            /* Oro finto */
+            font-family: 'Times New Roman', serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #FFFF00;
+            text-shadow: 4px 4px #FF0000;
+            border: 5px ridge #d4af37;
+            background: #000;
+            display: inline-block;
+            padding: 10px;
+            transform: rotate(-2deg);
+        }
+
+        .update-banner {
+            background-color: lime;
+            color: blue;
+            font-family: 'Comic Sans MS', sans-serif;
+            border: 3px dashed white;
+            padding: 10px;
+            margin: 20px auto;
+            width: 80%;
+            font-weight: bold;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .quote-list {
+            list-style-type: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .quote-item {
+            background: linear-gradient(to bottom, #444, #222);
+            border: 3px outset #888;
+            margin: 15px 0;
+            padding: 15px;
+            cursor: help;
+            transition: all 0.2s;
+            color: #fff;
+            font-size: 1.2em;
+        }
+
+        .quote-item:hover {
+            background: #666;
+            border-style: inset;
+            color: yellow;
+            transform: skewX(-10deg);
+        }
+
+        .quote-item:before {
+            content: "📜 ";
+        }
+
+        /* STILE DELLA PERGAMENA (POPUP) */
+        #parchment-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .parchment {
+            background-color: #f4e4bc;
+            width: 80%;
+            max-width: 500px;
+            min-height: 400px;
+            padding: 40px;
+            box-shadow: 0 0 50px #d4af37 inset, 10px 10px 20px #000;
+            border: 1px solid #c2b280;
+            font-family: 'Garamond', serif;
+            color: #3e2723;
+            position: relative;
+            text-align: center;
+            border-radius: 5px;
+            /* Effetto bordi bruciati */
+            background-image: radial-gradient(circle, transparent 60%, #c2b280 100%);
+        }
+
+        .parchment h2 {
+            font-family: 'Comic Sans MS', cursive;
+            /* Tocco di classe trash */
+            text-decoration: underline;
+            color: #8b0000;
+        }
+
+        .quote-text {
+            font-size: 24px;
+            font-style: italic;
+            font-weight: bold;
+            margin: 30px 0;
+            line-height: 1.5;
+        }
+
+        .signature {
+            margin-top: 30px;
+            text-align: right;
+            font-family: cursive;
+            font-size: 18px;
+        }
+
+        /* SIGILLO IN CERALACCA CSS */
+        .wax-seal {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle at 30% 30%, #ff4d4d, #8b0000);
+            border-radius: 50%;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+            font-size: 12px;
+            border: 4px dashed #600000;
+            transform: rotate(-15deg);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #8b0000;
+        }
+
+        .nav-link {
+            display: inline-block;
+            margin-top: 30px;
+            background: silver;
+            border: 2px outset white;
+            padding: 5px 10px;
+            color: black;
+            text-decoration: none;
+            font-family: sans-serif;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <marquee scrollamount="12" bgcolor="#000080" style="color: yellow; border-bottom: 3px double white;">
+        +++ FLASH NEWS: L'ACCADEMIA DELLA CRUSCA HA CHIESTO I DANNI +++ ELENCO IN CONTINUO AGGIORNAMENTO +++ NON PROVATE
+        A RIPETERE QUESTE FRASI A CASA +++
+    </marquee>
+
+    <br>
+
+    <h1>🏛️ L'ORACOLO DI UELO 🏛️</h1>
+
+    <div class="update-banner">
+        ⚠️ ATTENZIONE ⚠️<br>
+        Questa lista è in continuo aggiornamento.
+        <br>Ogni volta che Uelo apre bocca, un dizionario muore.
+    </div>
+
+    <p style="font-size: 18px;">Clicca sulla frase per vedere la <b>Certificazione Ufficiale di Ignoranza</b>.</p>
+
+    <ul class="quote-list">
+        <!-- FRASE 1 -->
+        <li class="quote-item" onclick="openParchment(
+            'O tutti o qualcuno', 
+            'Teoria della Relatività Generale (Secondo Uelo)', 
+            '12 Ottobre 2023'
+        )">
+            "O tutti o qualcuno"
+        </li>
+
+        <!-- FRASE 2 -->
+        <li class="quote-item" onclick="openParchment(
+            'Chi vince perde.', 
+            'Scusa ufficiale n. 45', 
+            'Ieri'
+        )">
+            "Chi vince perde."
+        </li>
+
+        <!-- Placeholder per future frasi -->
+        <li class="quote-item" style="opacity: 0.5;">
+            [Spazio riservato alla prossima perla]
+        </li>
+    </ul>
+
+    <a href="index.html" class="nav-link">⬅️ SCAPPA ALLA HOME</a>
+
+    <!-- IL POPUP PERGAMENA -->
+    <div id="parchment-modal" onclick="closeParchment()">
+        <div class="parchment" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="closeParchment()">✖</button>
+
+            <h2>Certificato di Autenticità</h2>
+            <p style="font-size: 14px;">Si attesta solennemente che la seguente frase è stata pronunciata senza l'uso
+                del cervello:</p>
+
+            <hr style="border-color: #8b0000; width: 50%;">
+
+            <div id="modal-text" class="quote-text">
+                Testo della frase qui...
+            </div>
+
+            <hr style="border-color: #8b0000; width: 50%;">
+
+            <p style="font-size: 14px;"><b>Contesto:</b> <span id="modal-context">...</span></p>
+            <p style="font-size: 12px;"><b>Data del crimine:</b> <span id="modal-date">...</span></p>
+
+            <div class="signature">
+                In fede,<br>
+                <i>Il Notaio del Disagio</i>
+            </div>
+
+            <div class="wax-seal">
+                DOC<br>100%<br>TRASH
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openParchment(text, context, date) {
+            document.getElementById('modal-text').innerText = "“" + text + "”";
+            document.getElementById('modal-context').innerText = context;
+            document.getElementById('modal-date').innerText = date;
+
+            const modal = document.getElementById('parchment-modal');
+            modal.style.display = 'flex';
+
+            // Suono immaginario di pergamena che si srotola
+            // (Non inserito audio vero per non spaventare l'utente, ma immaginalo)
+        }
+
+        function closeParchment() {
+            document.getElementById('parchment-modal').style.display = 'none';
+        }
+    </script>
+
+</body>
+
+</html>

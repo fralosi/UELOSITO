@@ -200,6 +200,36 @@
             background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 0, 0.75), rgba(0, 0, 0, 0));
             margin: 20px 0;
         }
+
+        .navbar {
+            background-color: #008080;
+            /* Teal */
+            border: 3px outset #ffffff;
+            padding: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .nav-link {
+            background-color: #c0c0c0;
+            border: 2px outset #ffffff;
+            padding: 5px 10px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+        }
+
+        .nav-link:active {
+            border: 2px inset #ffffff;
+        }
+
+        .nav-link:hover {
+            background-color: #ffff00;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -213,6 +243,11 @@
     </marquee>
 
     <div class="container">
+
+        <div class="navbar">
+            <a href="frasiuelo.html" class="nav-link">🗣️ Le frasi di Uelo</a>
+            <a href="giocouelo.html" class="nav-link">🎮 Gioca con Uelo</a>
+        </div>
 
         <br>
         <div style="text-align: center;">
